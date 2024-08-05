@@ -75,7 +75,7 @@ header=$(grep "^# " $mdf | sed 's/#//; s/[[:space:]]//')
 [[ ! -z "$landscape" ]] && pandoc "$mdf" -o "$pdff" -V geometry:margin=2cm -V geometry:landscape -V fontsize="$FONTSIZE" -V lang=de -V fontfamily:"$FONTFAMILY" -V title:"" --metadata title="$header" --metadata author="$AUTHOR" --pdf-engine xelatex
 [[ -z "$landscape" ]] && pandoc "$mdf" -o "$pdff" -V geometry:margin=2cm -V fontsize="$FONTSIZE" -V lang=de -V fontfamily:"$FONTFAMILY" -V title:"" --metadata title="$header" --metadata author="$AUTHOR" --pdf-engine xelatex
 
-[[ ! -z "$watermark" ]] && watermark insert -tc '#FF0000' -ts 92 -ha center "$pdff" "$watermark"
+[[ ! -z "$watermark" ]] && watermark insert -tc '#FF0000' -ts 92 -ha center -o 0.2 --unselectable "$pdff" "$watermark"
 
 
 [[ ! -z "$openafter" ]] && open "$pdff" && echo "Öffne \"$pdff\"!"
